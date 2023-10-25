@@ -1,0 +1,6 @@
+SecurityEvent
+| where EventID == 4625 // Événement d'échec de connexion
+| where (LogonTypeName == "3 - Network" or LogonTypeName == "10 - RemoteInteractive")
+| extend LoginTime = bin(TimeGenerated, 10s) // Regroupe les événements par intervalles de 10 secondes
+| summarize FailedLogonCount = count() by Account, LoginTime
+| where FailedLogonCount > 3 // Remplacez 3 par le nombre d'essais que vous considérez suspect

